@@ -9,8 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^1.8.2",
+    "bootstrap": "^5.3.3",
+    "next": "15.2.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.2.2"
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.10",
+    "@types/react": "19.0.10",
+    "typescript": "5.8.2"
   }
 }
