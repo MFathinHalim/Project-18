@@ -8,17 +8,141 @@
     --accent1: #C9E9D2;
     --accent2: #FF8383;
 }
+.red {
+    color: var(--accent2) !important;
+}
 
-body, div {
+.background {
+    background-color: #EDE5DA !important;
+}
+.roundedd {
+    border-radius: 16px !important;
+}
+@keyframes move {
+    100% {
+      transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+  }
+  
+  .container {
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .ball {
+    position: absolute;
+    width: 20vmin;
+    height: 20vmin;
+    z-index: -1;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    animation: move linear infinite;
+  }
+  
+  .ball:nth-child(odd) {
+      color: var(--primary);
+  }
+  
+  .ball:nth-child(even) {
+      color: var(--accent2);
+  }
+  
+  /* Using a custom attribute for variability */
+  .ball:nth-child(1) {
+    top: 77%;
+    left: 88%;
+    animation-duration: 40s;
+    animation-delay: -3s;
+    transform-origin: 16vw -2vh;
+    box-shadow: 40vmin 0 5.703076368487546vmin currentColor;
+  }
+  .ball:nth-child(2) {
+    top: 42%;
+    left: 2%;
+    animation-duration: 53s;
+    animation-delay: -29s;
+    transform-origin: -19vw 21vh;
+    box-shadow: -40vmin 0 5.17594621519026vmin currentColor;
+  }
+  .ball:nth-child(3) {
+    top: 28%;
+    left: 18%;
+    animation-duration: 49s;
+    animation-delay: -8s;
+    transform-origin: -22vw 3vh;
+    box-shadow: 40vmin 0 5.248179047256236vmin currentColor;
+  }
+  .ball:nth-child(4) {
+    top: 50%;
+    left: 79%;
+    animation-duration: 26s;
+    animation-delay: -21s;
+    transform-origin: -17vw -6vh;
+    box-shadow: 40vmin 0 5.279749632220298vmin currentColor;
+  }
+  .ball:nth-child(5) {
+    top: 46%;
+    left: 15%;
+    animation-duration: 36s;
+    animation-delay: -40s;
+    transform-origin: 4vw 0vh;
+    box-shadow: -40vmin 0 5.964309466052033vmin currentColor;
+  }
+  .ball:nth-child(6) {
+    top: 77%;
+    left: 16%;
+    animation-duration: 31s;
+    animation-delay: -10s;
+    transform-origin: 18vw 4vh;
+    box-shadow: 40vmin 0 5.178483653434181vmin currentColor;
+  }
+  .ball:nth-child(7) {
+    top: 22%;
+    left: 17%;
+    animation-duration: 55s;
+    animation-delay: -6s;
+    transform-origin: 1vw -23vh;
+    box-shadow: -40vmin 0 5.703026794398318vmin currentColor;
+  }
+  .ball:nth-child(8) {
+    top: 41%;
+    left: 47%;
+    animation-duration: 43s;
+    animation-delay: -28s;
+    transform-origin: 25vw -3vh;
+    box-shadow: 40vmin 0 5.196265905749415vmin currentColor;
+  }
+  
+.container {
+    width: 100% !important;
+}
+
+@media (min-width: 992px) { /* Hanya berlaku di layar ≥ 992px (desktop) */
+    .container {
+        width: 50% !important;
+    }
+}
+#mahiru {
+    height: fit-content !important;
+}
+body {
     background: var(--background) !important;
     color: var(--text) !important;
     font-family: "Outfit", sans-serif !important;
     height: 100vh !important;
+    overflow: hidden !important;
+}
+div {
+    height: 100vh !important;
 }
 
 img {
+    height: 140px;
+    width: 140px;
     max-height: 200px;
     max-width: 200px;
+    object-fit: cover;
 }
 
 .btn-primary {
@@ -27,8 +151,42 @@ img {
     color: var(--text) !important;
     font-weight: bold !important;
 }
+.btn-secondary {
+    background: var(--accent2) !important;
+    border: none !important;
+    color: var(--text) !important;
+    font-weight: bold !important;
+}
+.btn-primary:hover {
+    background: var(--accent1) !important;
+    filter: brightness(1.2);
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background: var(--accent2) !important;
+    filter: brightness(1.2);
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
 
 .form-control {
     border: 1px solid var(--text) !important;
     border-radius: 10px !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+progress, progress::-webkit-progress-bar {
+    border-radius: 10px;
+    height: 8px;
+    background-color: var(--primary) !important;
+}
+progress::-webkit-progress-value {
+    border-radius: 10px;
+    height: 8px;
+    background-color: var(--secondary) !important;
 }
