@@ -10,7 +10,11 @@
 }
 html, body {
   overflow: hidden !important;
-
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+::-webkit-scrollbar {
+  display: none;
 }
 .font-bolder {
   font-weight: bolder   ;
