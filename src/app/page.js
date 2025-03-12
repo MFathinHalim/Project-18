@@ -34,7 +34,8 @@ export default function Home() {
   return (
     <>
       <img className="rounded-circle" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
-      <label forhtml="prompt" className="w-100 text-lg font-bold"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
+      <h3 className="font-bolder my-2">Project 18</h3>
+        <label forhtml="prompt" className="w-100 text-lg font-bold"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
         <input 
           id="prompt" 
           className="form-control p-3"
