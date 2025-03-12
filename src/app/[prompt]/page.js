@@ -58,23 +58,24 @@ export default function Home() {
   }, [messages]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-2xl font-bold">{name || ""}</h1>
+    <>
+      <h4 className="text-lg font-bold">{name || ""}</h4>
       {loading ? (
-        <p>Loading...</p>
+        <p>Merangkai kata-kata</p>
       ) : messages.length > 0 ? (
         <>
-        <p className="text-lg">{messages[currentMessageIndex]}</p>
         <img 
-        src={cuteImages[currentMessageIndex % cuteImages.length]} 
-        alt="Cute" 
-        className="mt-4 w-64 h-64 rounded-lg shadow-lg"
-      />
+          src={cuteImages[currentMessageIndex % cuteImages.length]} 
+          alt="Cute" 
+          className="rounded-full"
+        />
+        <div className="px-4 px-3 background">
+          <h3 className="text-2xl font-bold">{messages[currentMessageIndex]}</h3>
+        </div>
         </>
       ) : (
         <p className="text-lg">Tidak ada pesan ditemukan.</p>
       )}
-      
-    </div>
+      </>
   );
 }

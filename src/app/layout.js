@@ -21,7 +21,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <div className="container">
+          <div className="d-flex justify-content-center align-items-center flex-column gap-2">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
