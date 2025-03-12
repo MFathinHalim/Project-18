@@ -41,16 +41,16 @@ export default function Home() {
           type="text" 
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)} 
-          placeholder="Buatlah kata-kata untuk..." 
+          placeholder="Contoh: Buatlah kata-kata untuk selamat ulang tahun" 
         />
-        <label forhtml="name" className="w-100 text-lg font-bold"><h5 className="m-0">Nama</h5></label>
+        <label forhtml="name" className="w-100 text-lg font-bold"><h5 className="m-0">Nama (Opsional)</h5></label>
         <input 
           id="name" 
           className="form-control p-3"
           type="text" 
           value={name}
           onChange={(e) => setName(e.target.value)} 
-          placeholder="M.Fathin Halim" 
+          placeholder="from: M.Fathin Halim to: Mahiru Shiina" 
         />
         <div id="mahiru" className="d-flex gap-2 w-100 align-items-start justify-content-center mt-2">
           <button onClick={copyLink} disabled={!prompt} className="btn btn-primary btn-lg">Share</button>

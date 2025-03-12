@@ -8,12 +8,19 @@
     --accent1: #C9E9D2;
     --accent2: #FF8383;
 }
+html, body {
+  overflow: hidden !important;
+
+}
+.font-bolder {
+  font-weight: bolder   ;
+}
 .red {
     color: var(--accent2) !important;
 }
 
 .background {
-    background-color: #EDE5DA !important;
+    background-color: #ede5daba !important;
 }
 .roundedd {
     border-radius: 16px !important;
@@ -131,7 +138,6 @@ body {
     color: var(--text) !important;
     font-family: "Outfit", sans-serif !important;
     height: 100vh !important;
-    overflow: hidden !important;
 }
 div {
     height: 100vh !important;
@@ -143,6 +149,7 @@ img {
     max-height: 200px;
     max-width: 200px;
     object-fit: cover;
+    border: 1px solid var(--primary) !important;
 }
 
 .btn-primary {
@@ -173,7 +180,11 @@ img {
 
 .form-control {
     border: 1px solid var(--text) !important;
+    background-color: #fef9f2aa !important  ;
     border-radius: 10px !important;
+}
+.form-control:focus {
+  box-shadow: none !important;
 }
 
 .align-items-center {

@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Project 18",
   description: "Share some Quotes",
+  icons: {
+    icon: "https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif" // Menentukan ikon favicon
+},
 };
 
 export default function RootLayout({ children }) {

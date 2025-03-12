@@ -2,8 +2,8 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const prompt = searchParams.get("prompt") || "default";
 
-  const apiurl = `https://sandipbaruwal.onrender.com/gpt?prompt=${encodeURIComponent(
-      "Buatkan teks motivasi yang singkat dan menggemaskan dalam 5 kalimat pendek. Gunakan gaya penulisan seperti ini: 'Hey kamu. Aku mau kasih tahu sesuatu 😊. Kamu itu hebat 💪. Jangan menyerah ya 🔥. Tetap semangat setiap hari!'. Jangan gunakan tanda baca selain titik dan di akhir sebelum titik ada emoji DAN JANGAN LUPA TITIKNYA DAN EMOJINYA. Jawab hanya dengan teks yang diminta, tanpa tambahan lainnya jika hari raya islam, sesuaikan supaya lebih formal karena ibadah + jangan pake Allah SWT tapi pake Allah سُبْحَانَهُ وَ تَعَالَى dan tetep TIDAK BOLEH LUPA TITIK. Buatlah tentang " + prompt
+  const apiurl = `https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(
+      "Buatkan teks motivasi yang singkat dan menggemaskan dalam 5 kalimat pendek. Gunakan gaya penulisan seperti ini: 'Hey kamu. Aku mau kasih tahu sesuatu 😊. Kamu itu hebat 💪. Jangan menyerah ya 🔥. Tetap semangat setiap hari!'. Jangan gunakan tanda baca selain titik dan di akhir sebelum titik ada emoji DAN JANGAN LUPA TITIKNYA DAN EMOJINYA. Jawab hanya dengan teks yang diminta, tanpa tambahan lainnya. dan tetep TIDAK BOLEH LUPA TITIK. Buatlah tentang " + prompt
     )}`;
       
   try {
