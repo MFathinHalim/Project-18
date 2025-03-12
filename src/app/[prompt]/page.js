@@ -54,11 +54,11 @@ export default function Home() {
     fetchData();
   }, [prompt]);
 
-  async function startReading() {
+  function startReading() {
     // Play BGM setelah tombol ditekan
     const audio = new Audio("/bgm.mp3");
     audio.loop = true;
-    await audio.play().catch((error) => console.error("Autoplay error:", error));
+    audio.play().catch((error) => console.error("Autoplay error:", error));
     setBgm(audio);
     setTimeout(() => {
       setShowMessage(true);
