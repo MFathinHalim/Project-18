@@ -58,7 +58,7 @@ export default function Home() {
     // Play BGM setelah tombol ditekan
     const audio = new Audio("/bgm.mp3");
     audio.loop = true;
-    audio.play().catch((error) => console.error("Autoplay error:", error));
+    audio.play();
     setBgm(audio);
     setTimeout(() => {
       setShowMessage(true);
