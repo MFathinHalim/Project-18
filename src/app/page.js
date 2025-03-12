@@ -1,10 +1,23 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [name, setName] = useState("");
-
+  useEffect(() => {
+    document.body.addEventListener("click", () => {
+      const audio = new Audio("/sfx.mp3");
+      audio.play().catch((error) => console.error("Autoplay error:", error));
+    });
+  
+    return () => {
+      document.body.removeEventListener("click", () => {
+        const audio = new Audio("/sfx.mp3");
+        audio.play().catch((error) => console.error("Autoplay error:", error));
+      });
+    };
+  }, []);
+  
   async function copyLink() {
     const currentUrl = `${window.location.href}${encodeURIComponent(prompt)}?name=${encodeURIComponent(name)}`
     if (navigator.share) {
@@ -33,7 +46,7 @@ export default function Home() {
 
   return (
     <>
-      <img className="rounded-circle" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
+      <img draggable="false" className="rounded-circle" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
       <h3 className="font-bolder my-2">Project 18</h3>
         <label forhtml="prompt" className="w-100 text-lg font-bold"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
         <input 

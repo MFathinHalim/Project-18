@@ -64,7 +64,20 @@ export default function Home() {
       setShowMessage(true);
     }, 1000);
   }
-
+  useEffect(() => {
+    document.body.addEventListener("click", () => {
+      const audio = new Audio("/sfx.mp3");
+      audio.play().catch((error) => console.error("Autoplay error:", error));
+    });
+  
+    return () => {
+      document.body.removeEventListener("click", () => {
+        const audio = new Audio("/sfx.mp3");
+        audio.play().catch((error) => console.error("Autoplay error:", error));
+      });
+    };
+  }, []);
+  
   useEffect(() => {
     if (messages.length === 0 || !showMessage) return;
 
@@ -126,7 +139,6 @@ export default function Home() {
     function handleClick() {
       if (!showMessage) return; // Pastikan surat sudah dibuka
   
-      console.log("hello");
       if (messages.length === 0 || currentMessageIndex === messages.length - 1) return;
   
       setCountdown(5);
@@ -153,6 +165,7 @@ export default function Home() {
         <img
             src="https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif"
             alt="Cute"
+            draggable="false"
             className="rounded-circle"
           />
         <button onClick={startReading} className="btn btn-secondary btn-lg fs-4">
