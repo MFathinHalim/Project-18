@@ -160,17 +160,7 @@ body {
     font-family: "Outfit", sans-serif !important;
     height: 100vh !important;
 }
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--background); /* Warna overlay */
-  opacity: 0.2; /* Sesuaikan transparansi */
-  z-index: -1; /* Pastikan overlay ada di bawah konten */
-}
+
 .parent {
     height: 100vh !important;
 }
