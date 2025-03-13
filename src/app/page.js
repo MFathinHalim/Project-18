@@ -23,7 +23,7 @@ export default function Home() {
     if (navigator.share) {
         try {
             await navigator.share({
-                title: "Project 18",
+                title: "Card Cozy",
                 text: ":3",
                 url: currentUrl,
             });
@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <>
       <img draggable="false" className="rounded-circle" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
-      <h3 className="font-bolder my-2">Project 18</h3>
+      <h3 className="font-bolder my-2">Card Cozy</h3>
         <label forhtml="prompt" className="w-100 text-lg font-bold"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
         <input 
           id="prompt" 

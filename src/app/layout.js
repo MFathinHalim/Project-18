@@ -13,12 +13,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Project 18",
+  title: "Card Cozy",
   description: "Share some Quotes",
   icons: {
-    icon: "https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif" // Menentukan ikon favicon
-},
+    icon: "https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif", // Favicon
+  },
+  openGraph: {
+    title: "Card Cozy",
+    description: "Share some Quotes",
+    siteName: "Card Cozy",
+    images: [
+      {
+        url: "https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif", // Gambar saat di-share
+        width: 1200,
+        height: 630,
+        alt: "Card Cozy Preview",
+      },
+    ],
+    type: "website",
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (
