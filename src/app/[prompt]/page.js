@@ -153,33 +153,42 @@ export default function Home() {
     };
   }, [showMessage, messages, currentMessageIndex]); // Tambahkan dependensi penting
   return (
-    <>
+    <div className="child px-3 py-5 d-flex justify-content-center align-items-center flex-column gap-2">
       <h4 className="text-lg font-bolder">{name || ""}</h4>
 
       {loading ? (
-        <h3 className="text-2xl font-bold background px-4 py-4 rounded">
-          Sedang mengambil surat...
-        </h3>
+        <>
+        <img
+        draggable="false"
+          src="https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif"
+          alt="Cute"
+          className="rounded-circle"
+        />
+          <h3 className="text-2xl font-bold px-4 py-4 roundedd background brdr">
+            Sedang menulis surat
+          </h3>
+        </>
       ) : isReady && !showMessage ? (
         <>
         <img
-            src="https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif"
+        draggable="false"
+            src="https://static.vecteezy.com/system/resources/previews/007/165/786/non_2x/cute-turquoise-email-message-icon-flat-design-for-app-label-illustration-free-vector.jpg"
             alt="Cute"
-            draggable="false"
             className="rounded-circle"
           />
-        <button onClick={startReading} className="btn btn-secondary btn-lg fs-4">
+        <button onClick={startReading} className="btn btn-secondary btn-lg fs-4 titlee">
           Klik Suratnya
         </button>
         </>
       ) : messages.length > 0 ? (
         <>
           <img
+          draggable="false"
             src={cuteImages[randomImageIndex]}
             alt="Cute"
             className="rounded-circle"
           />
-          <h3 className="text-2xl w-100 text-center font-bold background px-4 py-4 rounded background">
+          <h3 className="text-2xl w-100 text-center font-bold px-4 py-4 roundedd  background brdr">
             {typedMessage
               .replace("undefined", "")
               .replace("SWT", "سُبْحَانَهُ وَ تَعَالَى ") || "..."}
@@ -196,8 +205,10 @@ export default function Home() {
           )}
         </>
       ) : (
-        <p className="text-lg">Tidak ada pesan ditemukan.</p>
+        <h3 className="text-2xl w-100 text-center font-bold px-4 py-4 roundedd  background brdr">
+            waduh kecoret, reload pagenya dulu yaa
+        </h3>
       )}
-    </>
+    </div>
   );
 }
