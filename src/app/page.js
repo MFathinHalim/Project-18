@@ -1,20 +1,31 @@
 "use client"
 import { useState, useEffect } from "react";
-const backgrounds = [
-  "https://marketplace.canva.com/EAGAJbQSMpI/1/0/900w/canva-beige-pastel-cute-phone-wallpaper-gZsOg5F0HNI.jpg",
-  "https://wallpapers.com/images/featured/cute-aesthetic-background-x3g7cz5dr9k14wha.jpg",
-  "https://i.pinimg.com/originals/42/1b/76/421b76d982a90b8f2c6f9f1ddbbcb1e6.jpg"
-];
+
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [name, setName] = useState("");
-  const [bg, setBg] = useState("");
-
-  useEffect(() => {
-    const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
-    document.body.style.background = "url('" + randomBg + "')"
-  }, []);
+  const backgrounds = [
+    "https://marketplace.canva.com/EAGAJbQSMpI/1/0/900w/canva-beige-pastel-cute-phone-wallpaper-gZsOg5F0HNI.jpg",
+    "https://i.pinimg.com/736x/0e/a6/0e/0ea60e02e5dbad89e04710fab40d7b21.jpg",
+    "https://i.pinimg.com/736x/06/30/33/063033b955aa19d0a58b02cc513a8b5e.jpg"
+  ];
+  
+    useEffect(() => {
+      // Pilih gambar acak
+      const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      
+      // Terapkan ke body
+      document.body.style.backgroundImage = `url('${randomBg}')`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundRepeat = "no-repeat";
+      
+      // Cleanup untuk menghindari efek samping saat unmount
+      return () => {
+        document.body.style.backgroundImage = "";
+      };
+    }, []);
   useEffect(() => {
     document.body.addEventListener("click", () => {
       const audio = new Audio("/sfx.mp3");
