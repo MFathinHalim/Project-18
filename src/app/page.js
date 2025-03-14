@@ -19,7 +19,9 @@ export default function Home() {
   }, []);
   
   async function copyLink() {
-    const currentUrl = `${window.location.href}${encodeURIComponent(prompt)}?name=${encodeURIComponent(name)}`
+    const currentUrl = `${window.location.href}${ btoa(unescape(encodeURIComponent(prompt))) .replace(/\+/g, "-")
+    .replace(/\//g, "_") 
+    .replace(/=+$/, "")}?name=${encodeURIComponent(name)}`
     if (navigator.share) {
         try {
             await navigator.share({
@@ -41,7 +43,9 @@ export default function Home() {
     }
   }
   function openLink() {
-    return open(`${window.location.href}${encodeURIComponent(prompt)}?name=${encodeURIComponent(name)}`)
+    return open(`${window.location.href}${ btoa(unescape(encodeURIComponent(prompt))) .replace(/\+/g, "-")
+    .replace(/\//g, "_") 
+    .replace(/=+$/, "")}?name=${encodeURIComponent(name)}`)
   }
 
   return (

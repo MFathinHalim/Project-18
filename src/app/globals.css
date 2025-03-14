@@ -9,14 +9,7 @@
     --accent2: #FF8383;
 }
 html, body {
-  overflow: hidden !important;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  overflow-x: hidden !important;
   user-select: none;
 }
 ::-webkit-scrollbar {
@@ -31,6 +24,9 @@ html, body {
 }
 
 .background {
+    max-height:55vh;
+    overflow-y: auto;
+    text-align: justify !important;
     background-color: #ede5da60 !important;
 }
 .roundedd {

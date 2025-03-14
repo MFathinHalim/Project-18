@@ -40,7 +40,9 @@ export default function Home() {
 
         const data = await response.json();
         const newMessages =
-          data.answer?.split(". ").map((msg) => msg.trim()) || [];
+          data.answer
+            ?.split(/[\.\,]/)
+            .map((msg) => msg.trim()) || [];
         setMessages(newMessages);
         setMessages((prev) => [...prev, data.answer.replaceAll(". ", ", ")]);
         setIsReady(true); // Menampilkan tombol setelah fetch selesai
@@ -69,7 +71,7 @@ export default function Home() {
       const audio = new Audio("/sfx.mp3");
       audio.play().catch((error) => console.error("Autoplay error:", error));
     });
-  
+
     return () => {
       document.body.removeEventListener("click", () => {
         const audio = new Audio("/sfx.mp3");
@@ -77,7 +79,7 @@ export default function Home() {
       });
     };
   }, []);
-  
+
   useEffect(() => {
     if (messages.length === 0 || !showMessage) return;
 
@@ -138,16 +140,19 @@ export default function Home() {
   useEffect(() => {
     function handleClick() {
       if (!showMessage) return; // Pastikan surat sudah dibuka
-  
-      if (messages.length === 0 || currentMessageIndex === messages.length - 1) return;
-  
+
+      if (messages.length === 0 || currentMessageIndex === messages.length - 1)
+        return;
+
       setCountdown(5);
       setRandomImageIndex(Math.floor(Math.random() * cuteImages.length));
-      setCurrentMessageIndex((prev) => (prev + 1 < messages.length ? prev + 1 : prev));
+      setCurrentMessageIndex((prev) =>
+        prev + 1 < messages.length ? prev + 1 : prev
+      );
     }
-  
+
     document.body.addEventListener("click", handleClick);
-  
+
     return () => {
       document.body.removeEventListener("click", handleClick); // Bersihkan listener saat komponen unmount
     };
@@ -158,38 +163,45 @@ export default function Home() {
 
       {loading ? (
         <>
-        <img
-        draggable="false"
-          src="https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif"
-          alt="Cute"
-          className="rounded-circle"
-        />
+          <img
+            draggable="false"
+            src="https://media.tenor.com/rPYosYmsvokAAAAM/work-homework.gif"
+            alt="Cute"
+            className="rounded-circle"
+          />
           <h3 className="text-2xl font-bold px-4 py-4 roundedd background brdr">
             Sedang menulis surat
           </h3>
         </>
       ) : isReady && !showMessage ? (
         <>
-        <img
-        draggable="false"
+          <img
+            draggable="false"
             src="https://static.vecteezy.com/system/resources/previews/007/165/786/non_2x/cute-turquoise-email-message-icon-flat-design-for-app-label-illustration-free-vector.jpg"
             alt="Cute"
             className="rounded-circle"
           />
-        <button onClick={startReading} className="btn btn-secondary btn-lg fs-4 titlee">
-          Klik Suratnya
-        </button>
+          <button
+            onClick={startReading}
+            className="btn btn-secondary btn-lg fs-4 titlee"
+          >
+            Klik Suratnya
+          </button>
         </>
       ) : messages.length > 0 ? (
         <>
           <img
-          draggable="false"
+            draggable="false"
             src={cuteImages[randomImageIndex]}
             alt="Cute"
             className="rounded-circle"
           />
-          <h3 className="text-2xl w-100 text-center font-bold px-4 py-4 roundedd  background brdr">
-            {typedMessage
+          <h3
+            className={`text-2xl w-100 font-bold px-4 py-4 roundedd background brdr ${
+              currentMessageIndex === messages.length - 1 ? "text-justify" : "text-center"
+            }`}
+          >            
+          {typedMessage
               .replace("undefined", "")
               .replace("SWT", "سُبْحَانَهُ وَ تَعَالَى ") || "..."}
           </h3>
@@ -206,7 +218,7 @@ export default function Home() {
         </>
       ) : (
         <h3 className="text-2xl w-100 text-center font-bold px-4 py-4 roundedd  background brdr">
-            waduh kecoret, reload pagenya dulu yaa
+          waduh kecoret, reload pagenya dulu yaa
         </h3>
       )}
     </div>

@@ -1,9 +1,23 @@
+function decodeBase64UrlSafe(encoded) {
+  let base64 = encoded
+    .replace(/-/g, "+")  // Kembalikan "-" ke "+"
+    .replace(/_/g, "/"); // Kembalikan "_" ke "/"
+
+  // Tambahkan padding "=" jika panjangnya tidak kelipatan 4
+  while (base64.length % 4 !== 0) {
+    base64 += "=";
+  }
+
+  return decodeURIComponent(atob(base64));
+}
+
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
-  const prompt = searchParams.get("prompt") || "default";
-
+  let prompt = searchParams.get("prompt") || "default";
+  prompt = decodeBase64UrlSafe(prompt)
+  console.log(prompt)
   const apiurl = `https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(
-      "Buatkan teks motivasi yang singkat dan menggemaskan dalam 5 kalimat pendek. Gunakan gaya penulisan seperti ini: 'Hey kamu. Aku mau kasih tahu sesuatu 😊. Kamu itu hebat 💪. Jangan menyerah ya 🔥. Tetap semangat setiap hari!'. Jangan gunakan tanda baca selain titik dan di akhir sebelum titik ada emoji DAN JANGAN LUPA TITIKNYA DAN EMOJINYA. Jawab hanya dengan teks yang diminta, tanpa tambahan lainnya. dan tetep TIDAK BOLEH LUPA TITIK. Buatlah tentang " + prompt
+      "buatkan pesan ucapan yang diminta user, bahasanya jangan yg baku-baku yak, pakein slang kalau perlu, biar kelihatan seperti buatan manusia, buat pesan lu seolah-olah kayak pesan dari seseorang yang ditujukan ke orang spesifik, selagi ga disebutin nama, gunakan kata 'Gw' atau 'Kamu' juga gapapa, cukup balas dengan pesan ucapannya aja, pakai emoji kalau perlu. JANGAN PAKE TANDA SERU CUKUP GANTI TITIK AJA. awalnya jangan pake woi, lebih sopan sedikit " + prompt
     )}`;
       
   try {
