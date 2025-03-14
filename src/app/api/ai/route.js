@@ -15,9 +15,8 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url);
   let prompt = searchParams.get("prompt") || "default";
   prompt = decodeBase64UrlSafe(prompt)
-  console.log(prompt)
   const apiurl = `https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(
-"Buatkan pesan ucapan sesuai permintaan user. Gunakan bahasa yang santai, boleh pakai sedikit slang biar terasa lebih natural, tapi tetap sopan. Tulis pesannya seperti dari seseorang yang akrab dengan penerima, tanpa harus menyebut nama langsung. Jangan pakai tanda seru, cukup titik saja. Awali dengan kalimat yang lebih sopan atau langsung ke inti pesan. Gunakan emoji kalau cocok. Berikut permintaan user: " + prompt
+"Buatkan pesan ucapan sesuai permintaan user. Gunakan bahasa yang santai, boleh pakai sedikit bahasa gen z indonesia biar terasa lebih natural, tapi tetap sopan. Tulis pesannya seperti dari seseorang yang akrab dengan penerima, tanpa harus menyebut nama langsung. Jangan pakai tanda seru, cukup titik saja. Awali dengan kalimat yang lebih sopan atau langsung ke inti pesan. Gunakan emoji kalau cocok. Berikut permintaan user: " + prompt
     )}`;
       
   try {
@@ -32,7 +31,6 @@ export async function GET(req) {
     }
 
     const data = await response.json();
-    console.log("API Response:", data.answer); // Debugging
 
     return new Response(JSON.stringify(data), { // Perbaikan: Harus diubah ke JSON.stringify()
       status: 200,
