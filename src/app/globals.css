@@ -146,8 +146,7 @@ html, body {
     height: fit-content !important;
 }
 body {
-  border: 2px dashed var(--text);
-    background: url('https://ik.imagekit.io/9hpbqscxd/SG/image-95.jpg?updatedAt=1705798245623');
+  border: 2px dashed var(--text);    
     background-position: center;
     background-size: cover;
     color: var(--text) !important;

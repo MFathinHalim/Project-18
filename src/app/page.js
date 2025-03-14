@@ -1,9 +1,20 @@
 "use client"
 import { useState, useEffect } from "react";
+const backgrounds = [
+  "https://marketplace.canva.com/EAGAJbQSMpI/1/0/900w/canva-beige-pastel-cute-phone-wallpaper-gZsOg5F0HNI.jpg",
+  "https://wallpapers.com/images/featured/cute-aesthetic-background-x3g7cz5dr9k14wha.jpg",
+  "https://i.pinimg.com/originals/42/1b/76/421b76d982a90b8f2c6f9f1ddbbcb1e6.jpg"
+];
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [name, setName] = useState("");
+  const [bg, setBg] = useState("");
+
+  useEffect(() => {
+    const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    document.body.style.background = "url('" + randomBg + "')"
+  }, []);
   useEffect(() => {
     document.body.addEventListener("click", () => {
       const audio = new Audio("/sfx.mp3");

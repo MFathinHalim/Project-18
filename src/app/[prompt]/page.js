@@ -26,10 +26,29 @@ export default function Home() {
     "https://i.pinimg.com/originals/52/d0/60/52d06065a31aa6e7b03d512628b3f008.gif",
     "https://i.pinimg.com/originals/8b/82/c5/8b82c5576307ab23d2e207595fda65a7.gif",
   ];
-  const [randomImageIndex, setRandomImageIndex] = useState(
-    Math.floor(Math.random() * cuteImages.length)
-  );
 
+  const backgrounds = [
+    "https://marketplace.canva.com/EAGAJbQSMpI/1/0/900w/canva-beige-pastel-cute-phone-wallpaper-gZsOg5F0HNI.jpg",
+    "https://i.pinimg.com/736x/0e/a6/0e/0ea60e02e5dbad89e04710fab40d7b21.jpg",
+    "https://i.pinimg.com/736x/06/30/33/063033b955aa19d0a58b02cc513a8b5e.jpg"
+  ];
+  
+    useEffect(() => {
+      // Pilih gambar acak
+      const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      
+      // Terapkan ke body
+      document.body.style.backgroundImage = `url('${randomBg}')`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundRepeat = "no-repeat";
+      
+      // Cleanup untuk menghindari efek samping saat unmount
+      return () => {
+        document.body.style.backgroundImage = "";
+      };
+    }, []);
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -58,7 +77,9 @@ export default function Home() {
 
   function startReading() {
     // Play BGM setelah tombol ditekan
-    const audio = new Audio("/bgm.mp3");
+    const bgmFiles = ["/bgm1.mp3", "/bgm2.mp3", "/bgm3.mp3"];
+    const randomBgm = bgmFiles[Math.floor(Math.random() * bgmFiles.length)];
+    const audio = new Audio(randomBgm);
     audio.loop = true;
     audio.play();
     setBgm(audio);
