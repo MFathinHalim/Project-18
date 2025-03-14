@@ -17,9 +17,7 @@ export default function Home() {
   const [showMessage, setShowMessage] = useState(false);
   const [bgm, setBgm] = useState(null);
   const [isReady, setIsReady] = useState(false); // Untuk menampilkan tombol setelah fetch selesai
-  const [randomImageIndex, setRandomImageIndex] = useState(
-    Math.floor(Math.random() * backgrounds.length)
-  );
+  const [randomImageIndex, setRandomImageIndex] = useState(0);
   const cuteImages = [
     "https://i.pinimg.com/originals/29/ee/5c/29ee5c88ba50e0ef768872a49d1cb19f.gif",
     "https://i.pinimg.com/originals/18/fb/0a/18fb0a41f4658f84befdd647756269cf.gif",
