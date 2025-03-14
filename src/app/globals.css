@@ -133,13 +133,13 @@ html, body {
     box-shadow: 40vmin 0 5.196265905749415vmin currentColor;
   }
   
-.child {
+.child{
     width: 100% !important;
 }
 
 @media (min-width: 992px) { /* Hanya berlaku di layar ≥ 992px (desktop) */
     .child {
-        width: 80% !important;
+        width: 60% !important;
     }
 }
 #mahiru {
@@ -227,6 +227,7 @@ progress, progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
     border-radius: 10px;
     height: 8px;
+    border: 1px solid var(--text);
     background-color: var(--secondary) !important;
 }
 

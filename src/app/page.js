@@ -71,9 +71,9 @@ export default function Home() {
   }
 
   return (
-    <>
-      <img draggable="false" className="rounded-circle" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
-      <h3 className="font-bolder my-2">Card Cozy</h3>
+    <div  className="d-flex justify-content-center align-items-center flex-column gap-2 child">
+      <img draggable="false" className="rounded-circle text-center" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
+      <h3 className="font-bolder my-2 text-center">Card Cozy</h3>
         <label forhtml="prompt" className="w-100 text-lg font-bold"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
         <input 
           id="prompt" 
@@ -96,6 +96,6 @@ export default function Home() {
           <button onClick={copyLink} disabled={!prompt} className="btn btn-primary btn-lg">Share</button>
           <button onClick={openLink} disabled={!prompt} className="btn btn-secondary btn-lg">Preview</button>
         </div>
-    </>
+    </div>
   );
 }
