@@ -30,7 +30,7 @@ export default function AboutUs() {
         </p>
         <h6 className="text-dark">Kelompok 3</h6>
         <ul>
-            <li><a href="https://mfathinhalim.github.io" className="text-decoration-none">M.Fathin Halim (Leader, Developer, Designer)</a></li>
+            <li><a href="https://mfathinhalim.github.io" className="text-decoration-none text-dark">M.Fathin Halim (Leader, Developer, Designer)</a></li>
             <li>Faraz Dreamkey (Anggota)</li>
             <li>M.Fathurahman (Anggota)</li>
             <li>Napisya Amelia (Anggota)</li>
