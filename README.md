@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Card Cozy
 
-## Getting Started
+Card Cozy adalah sebuah web yang dikembangkan oleh **Kelompok 3, 9G SMP 1 (2025)** menggunakan **Next.js**. Website ini memungkinkan pengguna untuk membuat dan membagikan kutipan dengan cara yang unik dan menarik.
 
-First, run the development server:
+## Memulai
+
+Untuk menjalankan proyek ini secara lokal, gunakan perintah berikut:
 
 ```bash
 npm run dev
-# or
+# atau
 yarn dev
-# or
+# atau
 pnpm dev
-# or
+# atau
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000) di browser Anda untuk melihat hasilnya.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Anda dapat mulai mengedit halaman dengan memodifikasi `app/page.js`. Perubahan akan otomatis diperbarui.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Teknologi yang Digunakan
 
-## Learn More
+Card Cozy dibangun dengan:
+- **Next.js** - Framework React untuk membangun aplikasi web yang cepat dan modern.
+- **Bootstrap** - Untuk tata letak yang responsif dan tampilan yang menarik.
+- **Geist Font** - Font yang dioptimalkan untuk tampilan yang bersih dan elegan.
 
-To learn more about Next.js, take a look at the following resources:
+## Halaman "Tentang Kami"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Untuk mengetahui lebih lanjut tentang proyek ini dan tim pengembangnya, kunjungi halaman [Tentang Kami](https://cardcozy.vercel.app/about).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Pelajari Lebih Lanjut
 
-## Deploy on Vercel
+Jika Anda ingin mempelajari lebih lanjut tentang teknologi yang digunakan dalam proyek ini, lihat sumber berikut:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Dokumentasi Next.js](https://nextjs.org/docs) - Pelajari fitur dan API Next.js.
+- [Pelajari Next.js](https://nextjs.org/learn) - Tutorial interaktif tentang Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy di Vercel
+
+Card Cozy telah di-*deploy* di Vercel untuk performa terbaik. Anda dapat mengaksesnya langsung di [https://cardcozy.vercel.app](https://cardcozy.vercel.app).
+
+Untuk informasi lebih lanjut tentang cara *deploy* Next.js, lihat [dokumentasi Next.js tentang deployment](https://nextjs.org/docs/app/building-your-application/deploying).
+
