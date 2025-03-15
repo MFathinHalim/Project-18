@@ -10,6 +10,7 @@
 }
 html, body {
   overflow-x: hidden !important;
+  overflow-y: auto;
   user-select: none;
 }
 ::-webkit-scrollbar {
@@ -142,6 +143,7 @@ html, body {
         width: 60% !important;
     }
 }
+
 #mahiru {
     height: fit-content !important;
 }
@@ -169,6 +171,11 @@ img {
     border: 1px solid var(--primary) !important;
 }
 
+#aboutimg {
+  min-height: 400px !important;
+  max-height: 50%;
+  object-fit: cover;
+}
 .btn-primary {
     background: var(--accent1) !important;
     border: none !important;

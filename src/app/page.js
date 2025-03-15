@@ -71,10 +71,10 @@ export default function Home() {
   }
 
   return (
-    <div  className="d-flex justify-content-center align-items-center flex-column gap-2 child">
+    <div  className="d-flex justify-content-center align-items-center flex-column child">
       <img draggable="false" className="rounded-circle text-center" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
-      <h3 className="font-bolder my-2 text-center">Card Cozy</h3>
-        <label forhtml="prompt" className="w-100 text-lg font-bold"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
+      <a href="/about" className="mt-2 mb-0 text-center text-dark h3 fw-bolder">Card Cozy</a>
+        <label forhtml="prompt" className="w-100 text-lg font-bold mt-3"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
         <input 
           id="prompt" 
           className="form-control p-3"
@@ -83,7 +83,7 @@ export default function Home() {
           onChange={(e) => setPrompt(e.target.value)} 
           placeholder="Contoh: Buatlah kata-kata untuk selamat ulang tahun" 
         />
-        <label forhtml="name" className="w-100 text-lg font-bold"><h5 className="m-0">Nama (Opsional)</h5></label>
+        <label forhtml="name" className="w-100 text-lg font-bold mt-3"><h5 className="m-0">Nama (Opsional)</h5></label>
         <input 
           id="name" 
           className="form-control p-3"
@@ -96,6 +96,7 @@ export default function Home() {
           <button onClick={copyLink} disabled={!prompt} className="btn btn-primary btn-lg">Share</button>
           <button onClick={openLink} disabled={!prompt} className="btn btn-secondary btn-lg">Preview</button>
         </div>
+        
     </div>
   );
 }

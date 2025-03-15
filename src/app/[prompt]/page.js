@@ -242,6 +242,7 @@ export default function Home() {
           waduh kecoret, reload pagenya dulu yaa
         </h3>
       )}
+      
     </div>
   );
 }

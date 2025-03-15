@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.css';
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -43,6 +42,10 @@ export default function RootLayout({ children }) {
           <div className="d-flex justify-content-center align-items-center flex-column gap-2 parent">
             {children}
           </div>
+            <footer className="pb-4 text-center">
+              <p className="mb-0 fw-bold"> <a href="/about" className="text-black text-decoration-none">About us</a></p>
+            </footer>
+          
           <span className="ball"></span>
           <span className="ball"></span>
           <span className="ball"></span>
