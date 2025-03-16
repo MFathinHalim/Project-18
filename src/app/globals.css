@@ -22,7 +22,7 @@ html, body {
 }
 
 .background {
-    max-height:55vh;
+    max-height:40vh;
     overflow-y: auto;
     text-align: justify !important;
     background-color: #ede5da60 !important;
