@@ -81,23 +81,24 @@ export default function Home() {
     const randomBgm = bgmFiles[Math.floor(Math.random() * bgmFiles.length)];
     const audio = new Audio(randomBgm);
     audio.loop = true;
+    audio.volume = 0.5; 
     audio.play();
     setBgm(audio);
     setTimeout(() => {
       setShowMessage(true);
     }, 1000);
   }
+  const playSound = () => {
+    const audio = new Audio("/sfx.mp3");
+    audio.volume = 0.3; 
+    audio.play().catch((error) => console.error("Autoplay error:", error));
+  };
+  
   useEffect(() => {
-    document.body.addEventListener("click", () => {
-      const audio = new Audio("/sfx.mp3");
-      audio.play().catch((error) => console.error("Autoplay error:", error));
-    });
-
+    document.body.addEventListener("click", playSound);
+  
     return () => {
-      document.body.removeEventListener("click", () => {
-        const audio = new Audio("/sfx.mp3");
-        audio.play().catch((error) => console.error("Autoplay error:", error));
-      });
+      document.body.removeEventListener("click", playSound);
     };
   }, []);
 

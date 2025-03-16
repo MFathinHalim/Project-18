@@ -26,19 +26,19 @@ export default function Home() {
         document.body.style.backgroundImage = "";
       };
     }, []);
-  useEffect(() => {
-    document.body.addEventListener("click", () => {
+    const playSound = () => {
       const audio = new Audio("/sfx.mp3");
+      audio.volume = 0.6; 
       audio.play().catch((error) => console.error("Autoplay error:", error));
-    });
-  
-    return () => {
-      document.body.removeEventListener("click", () => {
-        const audio = new Audio("/sfx.mp3");
-        audio.play().catch((error) => console.error("Autoplay error:", error));
-      });
     };
-  }, []);
+    
+    useEffect(() => {
+      document.body.addEventListener("click", playSound);
+    
+      return () => {
+        document.body.removeEventListener("click", playSound);
+      };
+    }, []);
   
   async function copyLink() {
     const currentUrl = `${window.location.href}${ btoa(unescape(encodeURIComponent(prompt))) .replace(/\+/g, "-")
