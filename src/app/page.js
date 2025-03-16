@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [name, setName] = useState("");
+  const [name2, setName2] = useState("");
+
   const backgrounds = [
     "https://marketplace.canva.com/EAGAJbQSMpI/1/0/900w/canva-beige-pastel-cute-phone-wallpaper-gZsOg5F0HNI.jpg",
     "https://i.pinimg.com/736x/0e/a6/0e/0ea60e02e5dbad89e04710fab40d7b21.jpg",
@@ -43,7 +45,7 @@ export default function Home() {
   async function copyLink() {
     const currentUrl = `${window.location.href}${ btoa(unescape(encodeURIComponent(prompt))) .replace(/\+/g, "-")
     .replace(/\//g, "_") 
-    .replace(/=+$/, "")}?name=${encodeURIComponent(name)}`
+    .replace(/=+$/, "")}?name=from:${encodeURIComponent(name)} to:${encodeURIComponent(name2)}`
     if (navigator.share) {
         try {
             await navigator.share({
@@ -65,15 +67,15 @@ export default function Home() {
     }
   }
   function openLink() {
-    return open(`${window.location.href}${ btoa(unescape(encodeURIComponent(prompt))) .replace(/\+/g, "-")
+    return open(`${window.location.href}/preview/${ btoa(unescape(encodeURIComponent(prompt))) .replace(/\+/g, "-")
     .replace(/\//g, "_") 
-    .replace(/=+$/, "")}?name=${encodeURIComponent(name)}`)
+    .replace(/=+$/, "")}?name=from:${encodeURIComponent(name)} to:${encodeURIComponent(name2)}`)
   }
 
   return (
     <div  className="d-flex justify-content-center align-items-center flex-column child">
       <img draggable="false" className="rounded-circle text-center" src="https://media.tenor.com/t9pwGPO3TpoAAAAM/apt.gif" />
-      <a href="/about" className="mt-2 mb-0 text-center text-dark h3 fw-bolder">Card Cozy</a>
+      <a className="mt-2 mb-0 text-center text-dark h3 fw-bolder">Card Cozy</a>
         <label forhtml="prompt" className="w-100 text-lg font-bold mt-3"><h5 className="m-0">Perintah<span className="red">*</span></h5></label>
         <input 
           id="prompt" 
@@ -83,14 +85,23 @@ export default function Home() {
           onChange={(e) => setPrompt(e.target.value)} 
           placeholder="Contoh: Buatlah kata-kata untuk selamat ulang tahun" 
         />
-        <label forhtml="name" className="w-100 text-lg font-bold mt-3"><h5 className="m-0">Nama (Opsional)</h5></label>
+        <label forhtml="name" className="w-100 text-lg font-bold mt-3"><h5 className="m-0">Nama Pengirim</h5></label>
         <input 
           id="name" 
           className="form-control p-3"
           type="text" 
           value={name}
           onChange={(e) => setName(e.target.value)} 
-          placeholder="from: M.Fathin Halim to: Mahiru Shiina" 
+          placeholder="M.Fathin Halim" 
+        />
+        <label forhtml="name2" className="w-100 text-lg font-bold mt-3"><h5 className="m-0">Nama Penerima</h5></label>
+        <input 
+          id="name2" 
+          className="form-control p-3"
+          type="text" 
+          value={name2}
+          onChange={(e) => setName2(e.target.value)} 
+          placeholder="Mahiru Shiina" 
         />
         <div id="mahiru" className="d-flex gap-2 w-100 align-items-start justify-content-center mt-2">
           <button onClick={copyLink} disabled={!prompt} className="btn btn-primary btn-lg">Share</button>

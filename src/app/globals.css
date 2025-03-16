@@ -13,9 +13,6 @@ html, body {
   overflow-y: auto;
   user-select: none;
 }
-::-webkit-scrollbar {
-  display: none;
-}
 
 .font-bolder {
   font-weight: bolder   ;
