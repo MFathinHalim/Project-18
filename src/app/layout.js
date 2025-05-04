@@ -90,12 +90,6 @@ export default function RootLayout({ children }) {
               />
             </div>
           </div>
-          <span className="ball"></span>
-          <span className="ball"></span>
-          <span className="ball"></span>
-          <span className="ball"></span>
-          <span className="ball"></span>
-          <span className="ball"></span>
         </div>
       </body>
     </html>

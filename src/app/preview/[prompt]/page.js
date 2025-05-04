@@ -28,9 +28,11 @@ export default function Home() {
   ];
 
   const backgrounds = [
-    "https://marketplace.canva.com/EAGAJbQSMpI/1/0/900w/canva-beige-pastel-cute-phone-wallpaper-gZsOg5F0HNI.jpg",
-    "https://i.pinimg.com/736x/0e/a6/0e/0ea60e02e5dbad89e04710fab40d7b21.jpg",
-    "https://i.pinimg.com/736x/06/30/33/063033b955aa19d0a58b02cc513a8b5e.jpg",
+    "https://i.pinimg.com/736x/35/0b/d3/350bd3c3180f4234998299e34c6f89da.jpg",
+    "https://i.pinimg.com/736x/35/31/56/353156bf3584fc3548d6465f9b0e429f.jpg",
+    "https://i.pinimg.com/736x/18/81/ac/1881ac3643a163237e8e14158f61cd60.jpg",
+    "https://i.pinimg.com/736x/42/3e/75/423e752b884436e49d645763f6d784dc.jpg",
+    "https://i.pinimg.com/736x/6b/34/77/6b347757661505edf86e026e6edc18ae.jpg"
   ];
 
   useEffect(() => {
@@ -213,7 +215,7 @@ export default function Home() {
             alt="Cute"
             className="rounded-circle"
           />
-          <h3 className="text-2xl font-bold px-4 py-4 roundedd background brdr">
+          <h3 className="text-2xl font-bold px-4 py-4 roundedd brdr">
             Sedang menulis surat
           </h3>
         </>
@@ -241,7 +243,7 @@ export default function Home() {
             className="rounded-circle"
           />
           <h3
-            className={`text-2xl w-100 font-bold px-4 py-4 roundedd background brdr ${
+            className={`text-2xl w-100 font-bold px-4 py-4 roundedd brdr ${
               currentMessageIndex === messages.length - 1
                 ? "text-justify"
                 : "text-center"
