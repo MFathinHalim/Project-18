@@ -12,6 +12,7 @@
     "axios": "^1.8.2",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.5.0",
+    "emoji-regex": "^10.4.0",
     "framer-motion": "^12.5.0",
     "mongoose": "^8.14.2",
     "next": "15.2.2",

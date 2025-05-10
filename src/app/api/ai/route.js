@@ -31,7 +31,7 @@ export async function GET(req) {
     const mode = modes[post.mode] || "default"; 
 
     const apiurl = `https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(
-      `Buatkan pesan ucapan sesuai permintaan user. Jangan pakai tanda seru, cukup titik saja. Awali dengan kalimat yang lebih sopan atau langsung ke inti pesan. Gunakan emoji kalau cocok. buat agar memiliki style gaya bicara ke ${mode} yang ditujukan ke ${
+      `Buatkan pesan ucapan sesuai permintaan user. Jangan pakai tanda seru, cukup titik saja. Awali dengan kalimat yang lebih sopan atau langsung ke inti pesan. Gunakan emoji kalau cocok dan tambahkan . disamping emoji. buat agar memiliki style gaya bicara ke ${mode} yang ditujukan ke ${
         post.gender === 1 ? "perempuan" : "laki laki"
       }. sebut lengkap nama Tujuan usernya ${post.user.tujuan} yang dikirimkan oleh ${
         post.user.pengirim

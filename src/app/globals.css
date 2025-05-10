@@ -210,12 +210,12 @@ img {
   box-shadow: -2px -2px 0 var(--accent1), -4px -4px 0 var(--primary) !important;
 }
 
-.form-control {
+.form-control, .form-select {
   background-color: #fef9f2af !important  ;
-  box-shadow: 3px 2px #14141433;
+  box-shadow: 3px 2px #14141433 !important;
   border-radius: 10px !important;
 }
-.form-control:focus {
+.form-control:focus, .form-select:focus {
   box-shadow: none !important;
 }
 

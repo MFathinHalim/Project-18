@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSearchParams, useParams } from "next/navigation";
+import emojiRegex from "emoji-regex";
 
 export default function Home() {
   const params = useParams();
@@ -22,29 +23,36 @@ export default function Home() {
   // Array untuk backgrounds dan cuteImages
   const backgrounds = [
     // mode 0 = formal
-    ["https://i.pinimg.com/736x/35/31/56/353156bf3584fc3548d6465f9b0e429f.jpg"],
+    [
+      "https://img.freepik.com/free-vector/white-background-with-wavy-line_361591-1210.jpg?t=st=1746852517~exp=1746856117~hmac=6d5c59af3e981e662f8779b0ec68bac8a2a94fba0c632c6a926a2294f9532a50&w=996",
+      "https://img.freepik.com/free-vector/background-gradient-line-digital-abstract_483537-2921.jpg?t=st=1746852490~exp=1746856090~hmac=ab788c6257ee05242d8ca731a0b3bb072d4586ff7432645e5b0a0a78822e2e6c&w=996",
+      "https://img.freepik.com/premium-vector/abstract-wavy-line-background-dynamic-sound-wave-wavy-pattern-stylish-line-art-background-design_481388-1337.jpg?w=740",
+    ],
     // mode 1 = sahabat
     [
       "https://i.pinimg.com/736x/18/81/ac/1881ac3643a163237e8e14158f61cd60.jpg",
-      "https://i.pinimg.com/736x/42/3e/75/423e752b884436e49d645763f6d784dc.jpg",
+      "https://i.pinimg.com/originals/1e/5d/ef/1e5defd3e43a11c185c636f26fa5a04b.jpg",
+      "https://img.freepik.com/free-vector/hand-drawn-abstract-doodle-background_23-2149323528.jpg?semt=ais_hybrid&w=740",
+      "https://static.vecteezy.com/system/resources/previews/004/968/002/non_2x/cute-abstract-modern-background-free-vector.jpg",
     ],
     // mode 2 = romantis
     [
-      "https://i.pinimg.com/736x/f0/f1/a5/f0f1a5e6eae52f51376955c4cbf71dbd.jpg",
-      "https://i.pinimg.com/736x/59/88/6d/59886dc9f0dde61ffd68004e3c09ad7a.jpg",
-      "https://i.pinimg.com/736x/16/e6/e7/16e6e7475ecb29dcfc581e1ee5f46600.jpg",
-      "https://i.pinimg.com/originals/e0/4c/2c/e04c2c64127462fad5a5a4243648f3d2.jpg",
-      "https://i.pinimg.com/736x/59/88/6d/59886dc9f0dde61ffd68004e3c09ad7a.jpg"
+      "https://i.pinimg.com/736x/35/0b/d3/350bd3c3180f4234998299e34c6f89da.jpg",
+      "https://i.pinimg.com/736x/35/31/56/353156bf3584fc3548d6465f9b0e429f.jpg",
+      "https://i.pinimg.com/736x/18/81/ac/1881ac3643a163237e8e14158f61cd60.jpg",
+      "https://i.pinimg.com/736x/42/3e/75/423e752b884436e49d645763f6d784dc.jpg",
+      "https://i.pinimg.com/736x/6b/34/77/6b347757661505edf86e026e6edc18ae.jpg",
     ],
-    // mode 3 = undangan
-    ["https://i.pinimg.com/736x/23/4c/1c/234c1c9184f5126b83d42ad6420b48ff.jpg"],
   ];
 
   const cuteImages = [
     // gender 0 = cowok
     [
-      "https://i.pinimg.com/originals/29/ee/5c/29ee5c88ba50e0ef768872a49d1cb19f.gif",
-      "https://i.pinimg.com/originals/42/9a/89/429a890a39e70d522d52c7e52bce8535.gif",
+      "https://i.pinimg.com/originals/f7/09/63/f709637565b4719b0ac950b666ac8a01.gif",
+      "https://i.pinimg.com/originals/92/7e/e2/927ee21974707181014a5cef731394f5.gif",
+      "https://i.pinimg.com/originals/39/9c/84/399c848ef51509e8ff302fd82f76bdf9.gif",
+      "https://i.pinimg.com/originals/03/4d/a0/034da06d347ca04669060d4c68721ed3.gif",
+      "https://i.pinimg.com/originals/92/a1/1e/92a11ea49b4c4395dc8ed62fb3e34718.gif",
     ],
     // gender 1 = cewek
     [
@@ -65,9 +73,16 @@ export default function Home() {
           throw new Error(`HTTP error! status: ${response.status}`);
 
         const data = await response.json();
+        const emoji = emojiRegex().source;
+
+        const splitRegex = new RegExp(`[.,]|${emoji}`, "gu");
+
         const newMessages =
-          data.apiResponse.answer?.split(/[\.\,]/).map((msg) => msg.trim()) ||
-          [];
+          data.apiResponse.answer
+            ?.split(splitRegex)
+            .map((msg) => msg.trim())
+            .filter(Boolean) || [];
+
         setMessages(newMessages);
         setMessages((prev) => [
           ...prev,
@@ -123,12 +138,17 @@ export default function Home() {
     //1 -> sahabat
     //2 -> romantis
     const mode = post.mode;
-    const bgmFiles = [[], [], ["/bgm1.mp3", "/bgm2.mp3", "/bgm3.mp3"]];
+    const bgmFiles = [
+      ["/bgm2.mp3", "/bgm3.mp3", "/bgm4.mp3"],
+      ["/bgm1.mp3", "/bgm2.mp3", "/bgm3.mp3", "/bgm4.mp3"],
+      ["/rmc1.mp3", "/rmc2.mp3", "/rmc3.mp3", "/rmc4.mp3"],
+    ];
 
     const randomBgm =
-      bgmFiles[mode === 3 ? 0 : mode][
-        Math.floor(Math.random() * bgmFiles.length)
+      bgmFiles[mode === 3 ? 1 : mode][
+        Math.floor(Math.random() * bgmFiles[mode === 3 ? 0 : mode].length)
       ];
+    console.log(randomBgm);
     const audio = new Audio(randomBgm);
     audio.loop = true;
     audio.volume = 0.5;
@@ -220,9 +240,7 @@ export default function Home() {
       setRandomImageIndex(
         Math.floor(
           Math.random() *
-            cuteImages[
-              post.gender === 1 || post.mode === 2 ? 1 : post.mode === 0 ? 0 : 2
-            ].length
+            cuteImages[post.gender === 1 || post.mode === 2 ? 1 : 0].length
         )
       );
       setCurrentMessageIndex((prev) =>
@@ -239,7 +257,18 @@ export default function Home() {
   return (
     <div className="child px-3 py-5 d-flex justify-content-center align-items-center flex-column gap-2">
       <h5 className="mb-0">This is Preview</h5>
-      <h4 className="text-lg font-bolder mt-0">{name || ""}</h4>
+      <h4 className="fw-bold mt-0 d-flex flex-column flex-md-row gap-2">
+        <div>
+          {" "}
+          for{" "}
+          <span className="text-decoration-underline">
+            {post?.user?.tujuan || "..."}
+          </span>
+        </div>
+        <div>
+          from <span>{post?.user?.pengirim || "..."}</span>
+        </div>
+      </h4>
 
       {loading ? (
         <>
@@ -273,13 +302,9 @@ export default function Home() {
           <img
             draggable="false"
             src={
-              cuteImages[
-                post.gender === 1 || post.mode === 2
-                  ? 1
-                  : post.mode === 0
-                  ? 0
-                  : 2
-              ][randomImageIndex]
+              cuteImages[post.gender === 1 || post.mode === 2 ? 1 : 0][
+                randomImageIndex
+              ]
             }
             alt="Cute"
             className="rounded-circle bg-white"

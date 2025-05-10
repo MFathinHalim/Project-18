@@ -102,7 +102,9 @@ export default function Home() {
 
   function openLink() {
     if (!uid) {
-      alert("UID belum tersedia. Silakan klik tombol Generate terlebih dahulu.");
+      alert(
+        "UID belum tersedia. Silakan klik tombol Generate terlebih dahulu."
+      );
       return;
     }
     return open(`${window.location.origin}/preview/${uid}`);
@@ -139,68 +141,68 @@ export default function Home() {
         placeholder="Contoh: Buatlah kata-kata untuk selamat ulang tahun"
       />
 
-      <div className="w-100 mb-4">
-        <div className="d-flex gap-3 w-100 mb-2">
-          <label htmlFor="name" className="w-100 text-lg font-bold mt-3">
-            <h5 className="m-0">Nama Pengirim</h5>
-          </label>
-          <label htmlFor="name2" className="w-100 text-lg font-bold mt-3">
-            <h5 className="m-0">Nama Penerima</h5>
-          </label>
+      <div className="w-100 mb-2">
+        <div className="d-flex flex-md-row flex-column gap-3 w-100">
+          <div className="w-100">
+            <label htmlFor="name" className="w-100 text-lg font-bold mt-3">
+              <h5 className="m-0">Nama Pengirim</h5>
+            </label>
+            <input
+              id="name"
+              className="form-control p-3"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="M.Fathin Halim"
+            />
+          </div>
+          <div className="w-100">
+            <label htmlFor="name2" className="w-100 text-lg font-bold mt-3">
+              <h5 className="m-0">Nama Penerima</h5>
+            </label>
+            <input
+              id="name2"
+              className="form-control p-3"
+              type="text"
+              value={name2}
+              onChange={(e) => setName2(e.target.value)}
+              placeholder="Mahiru Shiina"
+            />
+          </div>
         </div>
-        <div className="d-flex gap-3 w-100">
-          <input
-            id="name"
-            className="form-control p-3"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="M.Fathin Halim"
-          />
-          <input
-            id="name2"
-            className="form-control p-3"
-            type="text"
-            value={name2}
-            onChange={(e) => setName2(e.target.value)}
-            placeholder="Mahiru Shiina"
-          />
+      </div>
+      <div className="d-flex gap-3 cursor-pointer flex-md-row flex-column w-100">
+        <div className="w-100">
+          <label htmlFor="mode" className="w-100 text-lg font-bold mt-3 mb-2">
+            <h5 className="m-0">Mode</h5>
+          </label>
+          <select
+            id="mode"
+            className="form-select p-3"
+            value={mode}
+            onChange={(e) => setMode(Number(e.target.value))}
+          >
+            <option value={0}>Formal</option>
+            <option value={2}>Romantis</option>
+            <option value={3}>Sahabat</option>
+          </select>
+        </div>
+
+        <div className="w-100 mb-4">
+          <label htmlFor="gender" className="w-100 text-lg font-bold mt-3 mb-2">
+            <h5 className="m-0">Gender</h5>
+          </label>
+          <select
+            id="gender"
+            className="form-select p-3"
+            value={gender}
+            onChange={(e) => setGender(Number(e.target.value))}
+          >
+            <option value={0}>Cowok</option>
+            <option value={1}>Cewek</option>
+          </select>
         </div>
       </div>
-
-      <div className="w-100 mb-4">
-        <label htmlFor="mode" className="w-100 text-lg font-bold mt-3 mb-2">
-          <h5 className="m-0">Mode</h5>
-        </label>
-        <select
-          id="mode"
-          className="form-select p-3"
-          value={mode}
-          onChange={(e) => setMode(Number(e.target.value))}
-        >
-          <option value={0}>Formal</option>
-          <option value={1}>Nonformal</option>
-          <option value={2}>Romantis</option>
-          <option value={3}>Sahabat</option>
-          <option value={4}>Undangan</option>
-        </select>
-      </div>
-
-      <div className="w-100 mb-4">
-        <label htmlFor="gender" className="w-100 text-lg font-bold mt-3 mb-2">
-          <h5 className="m-0">Gender</h5>
-        </label>
-        <select
-          id="gender"
-          className="form-select p-3"
-          value={gender}
-          onChange={(e) => setGender(Number(e.target.value))}
-        >
-          <option value={0}>Cowok</option>
-          <option value={1}>Cewek</option>
-        </select>
-      </div>
-
       <div
         id="mahiru"
         className="d-flex gap-3 w-100 align-items-start justify-content-center mt-2"
