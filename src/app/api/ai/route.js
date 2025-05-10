@@ -1,25 +1,44 @@
-function decodeBase64UrlSafe(encoded) {
-  let base64 = encoded
-    .replace(/-/g, "+")  // Kembalikan "-" ke "+"
-    .replace(/_/g, "/"); // Kembalikan "_" ke "/"
+import ControllerCard from "@/controllers/post";
 
-  // Tambahkan padding "=" jika panjangnya tidak kelipatan 4
-  while (base64.length % 4 !== 0) {
-    base64 += "=";
-  }
-
-  return decodeURIComponent(atob(base64));
-}
+const postController = ControllerCard.getInstance();
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
-  let prompt = searchParams.get("prompt") || "default";
-  prompt = decodeBase64UrlSafe(prompt)
-  const apiurl = `https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(
-"Buatkan pesan ucapan sesuai permintaan user. Jika user mention nama seseorang maka JANGAN LUPA sebutlah nama itu dengan lengkap. Gunakan bahasa yang santai, boleh pakai sedikit bahasa gen z indonesia biar terasa lebih natural, tapi tetap sopan. Tulis pesannya seperti dari seseorang yang akrab dengan penerima, tanpa harus menyebut nama langsung. Jangan pakai tanda seru, cukup titik saja. Awali dengan kalimat yang lebih sopan atau langsung ke inti pesan. Gunakan emoji kalau cocok. Jangan pake woi atau eh sama sekali. Berikut permintaan user: " + prompt
-    )}`;
-      
+  const uid = searchParams.get("uid"); // Ambil UID dari query parameter
+  if (!uid) {
+    return new Response(JSON.stringify({ error: "UID is required" }), { status: 400 });
+  }
+
   try {
+    // Cari data berdasarkan UID menggunakan controller
+    const posts = await postController.get({ uid });
+
+    if (posts.length === 0) {
+      return new Response(JSON.stringify({ error: "Data not found" }), { status: 404 });
+    }
+
+    const post = posts[0]; // Ambil data pertama dari hasil pencarian
+    const prompt = post.prompt; // Ambil prompt dari hasil pencarian
+
+    // Definisikan array mode
+    const modes = [
+      "formal",
+      "nonformal  Gunakan bahasa yang santai, boleh pakai sedikit bahasa gen z indonesia biar terasa lebih natural, tapi tetap sopan.",
+      "romantis Gunakan bahasa yang santai, boleh pakai sedikit bahasa gen z indonesia biar terasa lebih natural, tapi tetap sopan.",
+      "sahabat  Gunakan bahasa yang santai, boleh pakai sedikit bahasa gen z indonesia biar terasa lebih natural, tapi tetap sopan.",
+      "undangan",
+    ];
+    const mode = modes[post.mode] || "default"; 
+
+    const apiurl = `https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(
+      `Buatkan pesan ucapan sesuai permintaan user. Jangan pakai tanda seru, cukup titik saja. Awali dengan kalimat yang lebih sopan atau langsung ke inti pesan. Gunakan emoji kalau cocok. buat agar memiliki style gaya bicara ke ${mode} yang ditujukan ke ${
+        post.gender === 1 ? "perempuan" : "laki laki"
+      }. sebut lengkap nama Tujuan usernya ${post.user.tujuan} yang dikirimkan oleh ${
+        post.user.pengirim
+      } Permintaan user: ${prompt}. 
+      Informasi tambahan: Mode - ${mode}, Tujuan - ${post.user.tujuan}, Pengirim - ${post.user.pengirim}.`
+    )}`;
+
     const response = await fetch(apiurl, {
       headers: {
         "Content-Type": "application/json",
@@ -32,15 +51,22 @@ export async function GET(req) {
 
     const data = await response.json();
 
-    return new Response(JSON.stringify(data), { // Perbaikan: Harus diubah ke JSON.stringify()
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*", // Bypass CORS
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-    });
+    // Return data dari API dan post
+    return new Response(
+      JSON.stringify({
+        apiResponse: data,
+        post: post,
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Bypass CORS
+          "Access-Control-Allow-Methods": "GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
+      }
+    );
   } catch (error) {
     console.error("Error fetching API:", error);
     return new Response(JSON.stringify({ error: "Gagal mengambil data" }), { status: 500 });

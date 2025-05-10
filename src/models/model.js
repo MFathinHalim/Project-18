@@ -1,7 +1,7 @@
-import { Model, Schema, Types, model, models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const bookSchema = new Schema({
-    id: String,
+const cardSchema = new Schema({
+    uid: String,
     prompt: String,
     user: {
         tujuan: String,
@@ -10,3 +10,6 @@ const bookSchema = new Schema({
     mode: Number,
     gender: Number
 })
+
+const cardModel = models.card || model("card", cardSchema);
+export { cardModel }

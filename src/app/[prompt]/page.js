@@ -53,7 +53,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const apiurl = `/api/ai?prompt=${encodeURIComponent(prompt)}`;
+        const apiurl = `/api/ai?uid=${prompt}`;
         const response = await fetch(apiurl);
         if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);

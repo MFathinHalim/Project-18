@@ -18,53 +18,72 @@ export default function Home() {
   const [bgm, setBgm] = useState(null);
   const [isReady, setIsReady] = useState(false); // Untuk menampilkan tombol setelah fetch selesai
   const [randomImageIndex, setRandomImageIndex] = useState(0);
-  const cuteImages = [
-    "https://i.pinimg.com/originals/29/ee/5c/29ee5c88ba50e0ef768872a49d1cb19f.gif",
-    "https://i.pinimg.com/originals/18/fb/0a/18fb0a41f4658f84befdd647756269cf.gif",
-    "https://i.pinimg.com/originals/42/9a/89/429a890a39e70d522d52c7e52bce8535.gif",
-    "https://i.pinimg.com/originals/5d/7b/bf/5d7bbf91f0f3357cc9d4562b31ac7f39.gif",
-    "https://i.pinimg.com/originals/52/d0/60/52d06065a31aa6e7b03d512628b3f008.gif",
-    "https://i.pinimg.com/originals/8b/82/c5/8b82c5576307ab23d2e207595fda65a7.gif",
-  ];
-
+  const [post, setPost] = useState(null);
+  // Array untuk backgrounds dan cuteImages
   const backgrounds = [
-    "https://i.pinimg.com/736x/35/0b/d3/350bd3c3180f4234998299e34c6f89da.jpg",
-    "https://i.pinimg.com/736x/35/31/56/353156bf3584fc3548d6465f9b0e429f.jpg",
-    "https://i.pinimg.com/736x/18/81/ac/1881ac3643a163237e8e14158f61cd60.jpg",
-    "https://i.pinimg.com/736x/42/3e/75/423e752b884436e49d645763f6d784dc.jpg",
-    "https://i.pinimg.com/736x/6b/34/77/6b347757661505edf86e026e6edc18ae.jpg"
+    // mode 0 = formal
+    ["https://i.pinimg.com/736x/35/31/56/353156bf3584fc3548d6465f9b0e429f.jpg"],
+    // mode 1 = sahabat
+    [
+      "https://i.pinimg.com/736x/18/81/ac/1881ac3643a163237e8e14158f61cd60.jpg",
+      "https://i.pinimg.com/736x/42/3e/75/423e752b884436e49d645763f6d784dc.jpg",
+    ],
+    // mode 2 = romantis
+    [
+      "https://i.pinimg.com/736x/f0/f1/a5/f0f1a5e6eae52f51376955c4cbf71dbd.jpg",
+      "https://i.pinimg.com/736x/59/88/6d/59886dc9f0dde61ffd68004e3c09ad7a.jpg",
+      "https://i.pinimg.com/736x/16/e6/e7/16e6e7475ecb29dcfc581e1ee5f46600.jpg",
+      "https://i.pinimg.com/originals/e0/4c/2c/e04c2c64127462fad5a5a4243648f3d2.jpg",
+      "https://i.pinimg.com/736x/59/88/6d/59886dc9f0dde61ffd68004e3c09ad7a.jpg"
+    ],
+    // mode 3 = undangan
+    ["https://i.pinimg.com/736x/23/4c/1c/234c1c9184f5126b83d42ad6420b48ff.jpg"],
   ];
 
-  useEffect(() => {
-    // Pilih gambar acak
-    const randomBg =
-      backgrounds[Math.floor(Math.random() * backgrounds.length)];
-
-    // Terapkan ke body
-    document.body.style.backgroundImage = `url('${randomBg}')`;
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-
-    // Cleanup untuk menghindari efek samping saat unmount
-    return () => {
-      document.body.style.backgroundImage = "";
-    };
-  }, []);
+  const cuteImages = [
+    // gender 0 = cowok
+    [
+      "https://i.pinimg.com/originals/29/ee/5c/29ee5c88ba50e0ef768872a49d1cb19f.gif",
+      "https://i.pinimg.com/originals/42/9a/89/429a890a39e70d522d52c7e52bce8535.gif",
+    ],
+    // gender 1 = cewek
+    [
+      "https://i.pinimg.com/originals/42/9a/89/429a890a39e70d522d52c7e52bce8535.gif",
+      "https://i.pinimg.com/originals/ce/de/e5/cedee5a2aa7ec4eaaa6dbf60e8eb4b3a.gif",
+      "https://i.pinimg.com/originals/48/a9/0e/48a90eafbdec0f400940a9bb5da76266.gif",
+      "https://i.pinimg.com/originals/65/28/7a/65287a19692bfeac7a7fce6ad296cef4.gif",
+      "https://i.pinimg.com/originals/77/bc/7f/77bc7fd8117fa88beb837f39ef4d6544.gif",
+    ],
+  ];
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const apiurl = `/api/ai?prompt=${encodeURIComponent(prompt)}`;
+        const apiurl = `/api/ai?uid=${prompt}`;
         const response = await fetch(apiurl);
         if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);
 
         const data = await response.json();
         const newMessages =
-          data.answer?.split(/[\.\,]/).map((msg) => msg.trim()) || [];
+          data.apiResponse.answer?.split(/[\.\,]/).map((msg) => msg.trim()) ||
+          [];
         setMessages(newMessages);
-        setMessages((prev) => [...prev, data.answer.replaceAll(". ", ", ")]);
+        setMessages((prev) => [
+          ...prev,
+          data.apiResponse.answer.replaceAll(". ", ", "),
+        ]);
+        setPost(data.post);
+        const bgArray = backgrounds[data.post.mode];
+        const randomBg = bgArray[Math.floor(Math.random() * bgArray.length)];
+        console.log(randomBg);
+
+        // Terapkan ke body
+        document.body.style.backgroundImage = `url('${randomBg}')`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundRepeat = "no-repeat";
+        console.log(randomBg);
         setIsReady(true); // Menampilkan tombol setelah fetch selesai
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -77,7 +96,7 @@ export default function Home() {
   }, [prompt]);
   async function copyLink() {
     const currentUrl = `${window.location.href.replace("/preview", "")}`;
-    console.log(currentUrl)
+    console.log(currentUrl);
     if (navigator.share) {
       try {
         await navigator.share({
@@ -100,8 +119,16 @@ export default function Home() {
   }
   function startReading() {
     // Play BGM setelah tombol ditekan
-    const bgmFiles = ["/bgm1.mp3", "/bgm2.mp3", "/bgm3.mp3"];
-    const randomBgm = bgmFiles[Math.floor(Math.random() * bgmFiles.length)];
+    //0 -> formal
+    //1 -> sahabat
+    //2 -> romantis
+    const mode = post.mode;
+    const bgmFiles = [[], [], ["/bgm1.mp3", "/bgm2.mp3", "/bgm3.mp3"]];
+
+    const randomBgm =
+      bgmFiles[mode === 3 ? 0 : mode][
+        Math.floor(Math.random() * bgmFiles.length)
+      ];
     const audio = new Audio(randomBgm);
     audio.loop = true;
     audio.volume = 0.5;
@@ -190,7 +217,14 @@ export default function Home() {
         return;
 
       setCountdown(3);
-      setRandomImageIndex(Math.floor(Math.random() * cuteImages.length));
+      setRandomImageIndex(
+        Math.floor(
+          Math.random() *
+            cuteImages[
+              post.gender === 1 || post.mode === 2 ? 1 : post.mode === 0 ? 0 : 2
+            ].length
+        )
+      );
       setCurrentMessageIndex((prev) =>
         prev + 1 < messages.length ? prev + 1 : prev
       );
@@ -238,9 +272,17 @@ export default function Home() {
         <>
           <img
             draggable="false"
-            src={cuteImages[randomImageIndex]}
+            src={
+              cuteImages[
+                post.gender === 1 || post.mode === 2
+                  ? 1
+                  : post.mode === 0
+                  ? 0
+                  : 2
+              ][randomImageIndex]
+            }
             alt="Cute"
-            className="rounded-circle"
+            className="rounded-circle bg-white"
           />
           <h3
             className={`text-2xl w-100 font-bold px-4 py-4 roundedd brdr ${
@@ -276,7 +318,6 @@ export default function Home() {
           waduh kecoret, reload pagenya dulu yaa
         </h3>
       )}
-
     </div>
   );
 }
