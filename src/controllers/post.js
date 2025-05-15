@@ -21,7 +21,7 @@ class ControllerCard {
       // Tambahkan ID unik menggunakan nanoid
       const post = new this.#cards({
         ...data,
-        uid: nanoid(), // Generate unique ID
+        uid: nanoid(10), // Generate shorter unique ID
       });
       const result = await post.save();
       return result;

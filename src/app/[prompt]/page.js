@@ -9,6 +9,7 @@ export default function Home() {
 
   const prompt = params.prompt;
   const name = searchParams.get("name");
+  const [showPlayStore, setShowPlayStore] = useState(false);
 
   const [messages, setMessages] = useState([]);
   const [typedMessage, setTypedMessage] = useState("");
@@ -254,6 +255,21 @@ export default function Home() {
       document.body.removeEventListener("click", handleClick); // Bersihkan listener saat komponen unmount
     };
   }, [showMessage, messages, currentMessageIndex]); // Tambahkan dependensi penting
+
+  function openApp() {
+    const appUrl = `cardcozy://preview/${prompt}`;
+    const playStoreUrl =
+      "https://play.google.com/store/apps/details?id=com.cardcozy.app";
+
+    setShowPlayStore(false);
+    // Try to open the app
+    window.location.href = appUrl;
+
+    // If still on this page after 1s, show Play Store button
+    setTimeout(() => {
+      setShowPlayStore(true);
+    }, 1000);
+  }
   return (
     <div className="child px-3 py-5 d-flex justify-content-center align-items-center flex-column gap-2">
       <h4 className="fw-bold mt-0 d-flex flex-column flex-md-row gap-2">
@@ -336,6 +352,28 @@ export default function Home() {
           waduh kecoret, reload pagenya dulu yaa
         </h3>
       )}
+      <div style={{ marginTop: 20, textAlign: "center" }}>
+        <button
+          onClick={openApp}
+          className="btn btn-primary btn-lg fs-4 titlee"
+        >
+          Buka Aplikasi
+        </button>
+
+        {showPlayStore && (
+          <div style={{ marginTop: 10 }}>
+            <p>Sepertinya aplikasi belum terpasang. Kamu bisa unduh di sini:</p>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.cardcozy.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary btn-lg fs-4 titlee"
+            >
+              Unduh dari Play Store
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
